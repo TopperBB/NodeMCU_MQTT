@@ -1,6 +1,6 @@
-//CloudMQTT
-	// insert code to be run when the composition is fully loaded here
- 	client = new Paho.MQTT.Client("m11.cloudmqtt.com", 38940, "web_" + parseInt(Math.random() * 100, 10)); 
+//CloudMQTT WebSockets
+
+  client = new Paho.MQTT.Client("m11.cloudmqtt.com", 38940, "web_" + parseInt(Math.random() * 100, 10)); 
 
   // set callback handlers
   client.onConnectionLost = onConnectionLost;
