@@ -72,8 +72,8 @@ void setup()
 
 //----MQTT validate connection ----//
 
-  if (client.connect(MQTT::Connect("xxxxxxx")
-                    .set_auth("xxxxxx", "xxxxxxxxx"))) {
+  if (client.connect(MQTT::Connect("NodeMCU")
+                    .set_auth("yourCloudMQTTuser", "yourCloudMQTTpass"))) {
     Serial.println();
     Serial.println("Publish success.");
     client.publish("outTopic","NodeMCUconnected"); //Publish/send message to clound on outTopic
