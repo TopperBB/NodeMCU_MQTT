@@ -1,0 +1,56 @@
+//CloudMQTT
+	// insert code to be run when the composition is fully loaded here
+ 	client = new Paho.MQTT.Client("m11.cloudmqtt.com", 38940, "web_" + parseInt(Math.random() * 100, 10)); 
+
+  // set callback handlers
+  client.onConnectionLost = onConnectionLost;
+  client.onMessageArrived = onMessageArrived;
+  var options = {
+    useSSL: true,
+    userName: "bymwfcux", //CloudMQTT username
+    password: "Jd-hX3oLxvIC", //CloudMQTT password
+    onSuccess:onConnect,
+    onFailure:doFail
+  }
+
+  // connect the client
+  client.connect(options);
+
+  // called when the client connects
+  function onConnect() {
+    // Once a connection has been made, make a subscription and send a message.
+    console.log("CloudMQTT Connected");
+	 sym.$("cloudON").show();
+
+    client.subscribe("outTopic");
+    message = new Paho.MQTT.Message("Hello CloudMQTT");
+    message.destinationName = "outTopic";
+    client.send(message); 
+  }
+
+  function doFail(e){
+    console.log(e);
+  }
+
+  // called when the client loses its connection
+  function onConnectionLost(responseObject) {
+    if (responseObject.errorCode !== 0) {
+      console.log("onConnectionLost:"+responseObject.errorMessage);
+    }
+  }
+
+  // called when a message arrives
+function onMessageArrived(message) {
+
+   //get date time
+   var d = new Date();
+
+   console.log("Message from cloud: "+message.payloadString);
+
+	sym.$("message").html("Cloud Message: "+message.payloadString+"<br>"+"Time: "+d);
+
+	setTimeout(function() {sym.getSymbol("animation").stop(0);},2500);
+   sym.getSymbol("animation").play(0);
+
+  }
+
