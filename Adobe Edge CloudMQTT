@@ -7,8 +7,8 @@
   client.onMessageArrived = onMessageArrived;
   var options = {
     useSSL: true,
-    userName: "bymwfcux", //CloudMQTT username
-    password: "Jd-hX3oLxvIC", //CloudMQTT password
+    userName: "xxxxxxx", //CloudMQTT username
+    password: "xxxxxxx", //CloudMQTT password
     onSuccess:onConnect,
     onFailure:doFail
   }
